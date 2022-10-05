@@ -1,19 +1,8 @@
 const uuid = require('uuid');
 
-const taskDB = [
-    {
-        id: 1,
-        tittle: 'titulo de la tarea',
-        status: 'Pendiente'
-    },
-    {
-        id: 2,
-        tittle: 'titulo de la tarea',
-        status: 'Complete'
-    }
-];
+const taskDB = [];
 
-const getAllTask = () => {
+const getAllTasks = () => {
     return taskDB;
 }
 
@@ -22,7 +11,7 @@ const getTaskById = (id) => {
 
 }
 
-const createTask = (tittle) => {
+const createNewTask = (tittle) => {
     const newTask = {
         id: uuid.v4(),
         tittle,
@@ -30,4 +19,11 @@ const createTask = (tittle) => {
     };
     taskDB.push(newTask);
     return newTask;
+}
+
+
+module.exports = {
+    getAllTasks,
+    getTaskById,
+    createNewTask
 }
