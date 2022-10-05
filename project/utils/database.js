@@ -1,6 +1,6 @@
-const { Sequelizer } = require('sequelize');
+const { Sequelize } = require('sequelize');
 
-const db = new Sequelizer({
+const db = new Sequelize({
     dialect: 'postgres',
     host: 'localhost',
     username: 'postgres',

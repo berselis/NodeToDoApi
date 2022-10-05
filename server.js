@@ -1,4 +1,6 @@
 const express = require('express');
+const db = require('./project/utils/database');
+const initModels = require('./project/models/initModels');
 const server = express()
 const PORT = 8706;
 const taskRouter = require('./project/routers/task.router');
@@ -7,10 +9,20 @@ const taskRouter = require('./project/routers/task.router');
 // default is stringify
 server.use(express.json());
 
+db.authenticate()
+    .then(() => console.log('Database authenticated, OK!'))
+    .catch(error => console.log(error));
+
+db.sync()
+    .then(() => console.log('Database synced, OK!'))
+    .catch(error => console.log(error));
+
+
+initModels();
+
 server.get('/', (req, res) => {
     res.status(200).json({ message: 'Server OK!' })
 })
-
 server.use('/', taskRouter);
 
 server.listen(PORT, () => {
