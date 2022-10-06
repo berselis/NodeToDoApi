@@ -2,7 +2,7 @@ const express = require('express');
 const db = require('./project/utils/database');
 const initModels = require('./project/models/initModels');
 const server = express()
-const PORT = 8706;
+const { port } = require('./config');
 const taskRouter = require('./project/routers/task.router');
 
 // to activate recive json format, express function. 
@@ -25,8 +25,8 @@ server.get('/', (req, res) => {
 })
 server.use('/', taskRouter);
 
-server.listen(PORT, () => {
-    console.log(`Server started at port ${PORT}`);
+server.listen(port, () => {
+    console.log(`Server started at port ${port}`);
 });
 
 
