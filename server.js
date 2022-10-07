@@ -9,6 +9,8 @@ const taskRouter = require('./project/routers/task.router');
 // default is stringify
 server.use(express.json());
 
+
+
 db.authenticate()
     .then(() => console.log('Database authenticated, OK!'))
     .catch(error => console.log(error));
@@ -18,7 +20,7 @@ db.sync()
     .catch(error => console.log(error));
 
 
-initModels();
+    initModels();
 
 server.get('/', (req, res) => {
     res.status(200).json({ message: 'Server OK!' })

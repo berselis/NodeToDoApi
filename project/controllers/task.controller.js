@@ -1,9 +1,9 @@
 const uuid = require('uuid');
+const Tasks = require('../models/tasks.models');
 
-const taskDB = [];
-
-const getAllTasks = () => {
-    return taskDB;
+const getAllTasks = async () => {
+    const data = await Tasks.findAll();
+    return data;
 }
 
 const getTaskById = (id) => {
@@ -11,16 +11,26 @@ const getTaskById = (id) => {
 
 }
 
-const createNewTask = (tittle) => {
+const createNewTask = (data) => {
     const newTask = {
         id: uuid.v4(),
-        tittle,
-        status: 'created'
+        tittle: data.tittle,
+        status: 'created',
+        priorityLevel: data.priorityLevel,
+        createAt: data.createAt
     };
-    taskDB.push(newTask);
+    Tasks.create(newTask);
     return newTask;
 }
 
+// createNewTask({
+//     tittle: "Hacer la compra",
+//     priorityLevel: 1,
+//     createAt: '2022-10-05'
+// })
+
+
+// 
 
 module.exports = {
     getAllTasks,
